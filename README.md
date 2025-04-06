@@ -18,7 +18,13 @@
 
 <b>Try it online👉：[http://ppt.quickmap.net](http://ppt.quickmap.net)</b>
 
-<b>Explain video:<video src="/public/jiangjie.mp4" width="550"> </video></b>
+<b>Explain video:</b>
+
+<video id="video" controls="" preload="none" poster="封面">
+      <source id="mp4" src="/public/jiangjie.mp4" type="video/mp4">
+</video>
+
+
 
 # ✨ Highlights
 1. <b>Easy Development</b>: Built with Vue 3.x and TypeScript.
