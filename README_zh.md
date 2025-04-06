@@ -27,6 +27,7 @@ npm run dev
 ### 基础功能
 - 上传PPT
 - 设置PPT页面讲解文稿
+- AI生成讲解文稿
 - 修改、删除PPT页
 - 设置虚拟人、虚拟人位置
 - 设置语言
@@ -34,7 +35,7 @@ npm run dev
 - 管理虚拟人
 - 管理语言
 - 用户管理
-
+- AI生成PPT参见 [https://github.com/pipipi-pikachu/PPTist](https://github.com/pipipi-pikachu/PPTist)
  
 
  

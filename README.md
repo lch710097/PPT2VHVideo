@@ -41,6 +41,8 @@ Browser access: http://127.0.0.1:5173/
 - Upload Voice
 - Upload Protait
 - Export to Video  
+- AI generator content
+- AI generator PPT [https://github.com/pipipi-pikachu/PPTist](https://github.com/pipipi-pikachu/PPTist)
 
 # 👀 FAQ
 Some common problems: [FAQ](/doc/Q&A.md)
