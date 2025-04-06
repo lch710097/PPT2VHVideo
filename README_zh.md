@@ -8,7 +8,7 @@
 
 <b>Try it online👉：[http://ppt.quickmap.net](http://ppt.quickmap.net) 暂时不支持导出视频</b>
 
-演示视频：<video src="public/jiangjie.mp4" width="550"> </video>
+<b>演示视频：<video src="/public/jiangjie.mp4" width="550"> </video></b>
 
 # ✨ 项目特色
 1. 易开发：基于 Vue3.x + TypeScript 构建，不依赖UI组件库，尽量避免第三方组件，样式定制更轻松、功能扩展更方便。

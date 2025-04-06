@@ -18,7 +18,7 @@
 
 <b>Try it online👉：[http://ppt.quickmap.net](http://ppt.quickmap.net)</b>
 
-explain video:<video src="public/jiangjie.mp4" width="550"> </video>
+<b>Explain video:<video src="/public/jiangjie.mp4" width="550"> </video></b>
 
 # ✨ Highlights
 1. <b>Easy Development</b>: Built with Vue 3.x and TypeScript.
