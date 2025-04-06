@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/lch710097/PPT2VHVideo/stargazers" target="_black"><img src="https://img.shields.io/github/stars/pipipi-pikachu/PPTist?logo=github" alt="stars" /></a>
-    <a href="https://github.com/lch710097/PPT2VHVideo/network/members" target="_black"><img src="https://img.shields.io/github/forks/pipipi-pikachu/PPTist?logo=github" alt="forks" /></a>
-    <a href="https://github.com/lch710097/PPT2VHVideo/blob/master/LICENSE" target="_black"><img src="https://img.shields.io/github/license/pipipi-pikachu/PPTist?color=%232DCE89&logo=github" alt="license" /></a>
+    <a href="https://github.com/lch710097/PPT2VHVideo/stargazers" target="_black"><img src="https://img.shields.io/github/stars/lch710097/PPT2VHVideo?logo=github" alt="stars" /></a>
+    <a href="https://github.com/lch710097/PPT2VHVideo/network/members" target="_black"><img src="https://img.shields.io/github/forks/lch710097/PPT2VHVideo?logo=github" alt="forks" /></a>
+    <a href="https://github.com/lch710097/PPT2VHVideo/blob/master/LICENSE" target="_black"><img src="https://img.shields.io/github/license/lch710097/PPT2VHVideo?color=%232DCE89&logo=github" alt="license" /></a>
     <a href="https://www.typescriptlang.org" target="_black"><img src="https://img.shields.io/badge/language-TypeScript-blue.svg" alt="language"></a>
-    <a href="https://github.com/lch710097/PPT2VHVideo/PPTist/issues" target="_black"><img src="https://img.shields.io/github/issues-closed/pipipi-pikachu/PPTist.svg" alt="issue"></a>
+    <a href="https://github.com/lch710097/PPT2VHVideo/PPTist/issues" target="_black"><img src="https://img.shields.io/github/issues-closed/lch710097/PPT2VHVideo.svg" alt="issue"></a>
 </p>
 
 [简体中文](README_zh.md) | English
@@ -17,6 +17,8 @@
 > PPT2VHVideo, A web-based presentation (ppt) application. This application change ppt to   Digital Human video.
 
 <b>Try it online👉：[http://ppt.quickmap.net](http://ppt.quickmap.net)</b>
+
+explain video:<video src="public/jiangjie.mp4" width="550"> </video>
 
 # ✨ Highlights
 1. <b>Easy Development</b>: Built with Vue 3.x and TypeScript.
