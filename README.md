@@ -37,7 +37,7 @@ npm install
 npm run dev
 ```
 
-server set:[https://github.com/lch710097/PPTToVideoServer] SpringBoot ，after start，change serverurl in public/config.js 
+Server set:[https://github.com/lch710097/PPTToVideoServer] SpringBoot ，after start，change serverurl in public/config.js 
 
 Browser access: http://127.0.0.1:5173/
 

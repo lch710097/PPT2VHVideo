@@ -1184,20 +1184,55 @@ const exportVideo = () => {
 </script>
 
 <style scoped>
-/* 全局样式 */
+/* 全局样式 - 科技感主题 */
 .container {
   max-width: 98%;
   margin: 0 auto;
   padding: 20px;
-  color: #2c3e50;
+  background-color: #0f1629;
+  color: #e0e6ed;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 背景科技效果 */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(64, 158, 255, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(100, 218, 255, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* 编辑器样式 */
 .ppt-editor-container {
-  background-color: #f9fafc;
+  background-color: rgba(25, 32, 56, 0.7);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(76, 201, 240, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.ppt-editor-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4cc9f0, transparent);
+  opacity: 0.7;
 }
 
 .editor-header {
@@ -1206,19 +1241,33 @@ const exportVideo = () => {
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #ebeef5;
+  border-bottom: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .editor-title {
   font-size: 24px;
-  color: #409EFF;
+  color: #4cc9f0;
   margin: 0;
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+  font-weight: 600;
 }
 
-.new-upload-btn {
+.new-upload-btn, .upload-empty-btn {
   display: flex;
   align-items: center;
   gap: 5px;
+  background: linear-gradient(135deg, #4cc9f0, #4361ee);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+}
+
+.new-upload-btn:hover, .upload-empty-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 201, 240, 0.4);
 }
 
 .ppt-editor {
@@ -1230,12 +1279,33 @@ const exportVideo = () => {
 
 /* 左侧缩略图列表 */
 .ppt-thumbnails {
-  background-color: white;
+  background-color: rgba(15, 23, 42, 0.5);
   border-radius: 8px;
   padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: 600px;
   overflow-y: auto;
+  border: 1px solid rgba(76, 201, 240, 0.2);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(76, 201, 240, 0.3) rgba(15, 23, 42, 0.5);
+}
+
+.ppt-thumbnails::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ppt-thumbnails::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+.ppt-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(76, 201, 240, 0.3);
+  border-radius: 4px;
+}
+
+.ppt-thumbnails::-webkit-scrollbar-thumb:hover {
+  background: rgba(76, 201, 240, 0.5);
 }
 
 .empty-thumbnails {
@@ -1247,10 +1317,6 @@ const exportVideo = () => {
   gap: 20px;
 }
 
-.upload-empty-btn {
-  margin-top: 10px;
-}
-
 .ppt-slide {
   cursor: pointer;
   border: 2px solid transparent;
@@ -1258,32 +1324,53 @@ const exportVideo = () => {
   margin-bottom: 15px;
   transition: all 0.3s;
   overflow: hidden;
-  background-color: #f5f7fa;
+  background-color: rgba(25, 32, 56, 0.7);
+  position: relative;
+}
+
+.ppt-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, #4cc9f0, #4361ee);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .ppt-slide:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(76, 201, 240, 0.15);
+}
+
+.ppt-slide:hover::before {
+  opacity: 1;
 }
 
 .ppt-slide.active {
-  border: 2px solid #409EFF;
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  border: 2px solid #4cc9f0;
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.3);
+}
+
+.ppt-slide.active::before {
+  opacity: 1;
 }
 
 .thumbnail-image {
   width: 100%;
   height: 120px;
   object-fit: contain;
-  background-color: white;
+  background-color: rgba(15, 23, 42, 0.5);
 }
 
 .slide-number {
   text-align: center;
   padding: 5px;
   font-size: 12px;
-  color: #606266;
-  background-color: #f5f7fa;
+  color: #a0aec0;
+  background-color: rgba(15, 23, 42, 0.7);
 }
 
 /* 中间内容区域 */
@@ -1291,25 +1378,24 @@ const exportVideo = () => {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
 }
 
-
-/* 中间内容区域 */
 .ppt-content2 {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
 }
+
 .current-slide {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
-  background-color: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background-color: rgba(15, 23, 42, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 960px;
   height: 540px;
+  border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .slide-image {
@@ -1324,61 +1410,95 @@ const exportVideo = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  color: #909399;
+  background-color: rgba(15, 23, 42, 0.5);
+  color: #a0aec0;
   font-size: 16px;
 }
 
 .section-title {
   font-size: 18px;
-  color: #303133;
+  color: #4cc9f0;
   margin-bottom: 10px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
-.script-editor {
-  background-color: white;
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234cc9f0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.script-editor, .audio-selector {
+  background-color: rgba(25, 32, 56, 0.7);
   border-radius: 8px;
   padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .script-textarea {
   width: 100%;
+  background-color: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  border-radius: 8px;
+  color: #e0e6ed;
+  transition: all 0.3s;
 }
 
-.audio-selector {
-  background-color: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+.script-textarea:focus {
+  border-color: #4cc9f0;
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
 }
 
 .audio-controls {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .voice-select {
   flex: 1;
 }
 
+.preview-btn {
+  background: linear-gradient(135deg, #4cc9f0, #4361ee);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+}
+
+.preview-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 201, 240, 0.4);
+}
+
 /* 右侧设置区域 */
 .settings-panel {
-  background-color: white;
+  background-color: rgba(25, 32, 56, 0.7);
   border-radius: 8px;
   padding: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: fit-content;
+  border: 1px solid rgba(76, 201, 240, 0.2);
 }
 
 .settings-title {
   font-size: 18px;
-  color: #303133;
+  color: #4cc9f0;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #ebeef5;
+  border-bottom: 1px solid rgba(76, 201, 240, 0.2);
   font-weight: 500;
 }
 
@@ -1402,16 +1522,24 @@ const exportVideo = () => {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #ebeef5;
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.2);
+  transition: all 0.3s;
+}
+
+.avatar-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.4);
 }
 
 .avatar-name {
   font-size: 14px;
+  color: #e0e6ed;
 }
 
 .position-title {
   font-size: 16px;
-  color: #303133;
+  color: #4cc9f0;
   margin-bottom: 10px;
   font-weight: 500;
 }
@@ -1431,7 +1559,7 @@ const exportVideo = () => {
 .coordinate-label {
   width: 60px;
   font-size: 14px;
-  color: #606266;
+  color: #a0aec0;
 }
 
 .coordinate-input {
@@ -1451,11 +1579,29 @@ const exportVideo = () => {
   border: none;
   border-radius: 8px;
   transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.export-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
 }
 
 .export-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 6px 20px rgba(103, 194, 58, 0.4);
+}
+
+.export-btn:hover::before {
+  left: 100%;
 }
 
 /* 上传对话框 */
@@ -1465,6 +1611,15 @@ const exportVideo = () => {
 
 .upload-area {
   width: 100%;
+  border: 2px dashed rgba(76, 201, 240, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s;
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+.upload-area:hover {
+  border-color: #4cc9f0;
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.2);
 }
 
 /* 数字人 */
@@ -1476,6 +1631,249 @@ const exportVideo = () => {
   background-repeat: no-repeat;
   background-position: center;
   cursor: move;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 0 8px rgba(76, 201, 240, 0.3));
+  border: 1px dashed rgba(76, 201, 240, 0.5);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.virtual-human:hover {
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
+  border-style: solid;
+}
+
+/* 表格样式 */
+:deep(.el-table) {
+  background-color: transparent !important;
+  color: #e0e6ed !important;
+  border: 1px solid rgba(76, 201, 240, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+:deep(.el-table__header-wrapper th) {
+  background-color: rgba(25, 32, 56, 0.9) !important;
+  color: #4cc9f0 !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+:deep(.el-table__row) {
+  background-color: rgba(25, 32, 56, 0.7) !important;
+  color: #e0e6ed !important;
+  border-bottom: 1px solid rgba(76, 201, 240, 0.1);
+}
+
+:deep(.el-table__row:hover) {
+  background-color: rgba(76, 201, 240, 0.2) !important;
+}
+
+:deep(.el-table__row:hover td) {
+  background-color: transparent !important;
+}
+
+:deep(.el-table__cell) {
+  border-bottom: 1px solid rgba(76, 201, 240, 0.1) !important;
+}
+
+:deep(.el-table--enable-row-hover .el-table__body tr:hover>td) {
+  background-color: transparent !important;
+}
+
+:deep(.el-table__inner-wrapper::before) {
+  display: none;
+}
+
+/* 表单元素样式 */
+:deep(.el-input__wrapper) {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(76, 201, 240, 0.3) inset !important;
+  border-radius: 8px;
+}
+
+:deep(.el-input__wrapper:hover) {
+  box-shadow: 0 0 0 1px #4cc9f0 inset !important;
+}
+
+:deep(.el-input__wrapper.is-focus) {
+  box-shadow: 0 0 0 1px #4cc9f0 inset, 0 0 10px rgba(76, 201, 240, 0.3) !important;
+}
+
+:deep(.el-input__inner) {
+  color: #e0e6ed !important;
+}
+
+:deep(.el-radio__input.is-checked .el-radio__inner) {
+  background-color: #4cc9f0;
+  border-color: #4cc9f0;
+}
+
+:deep(.el-radio__input.is-checked+.el-radio__label) {
+  color: #4cc9f0;
+}
+
+:deep(.el-radio__inner:hover) {
+  border-color: #4cc9f0;
+}
+
+:deep(.el-button--primary) {
+  background-color: #4cc9f0;
+  border-color: #4cc9f0;
+}
+
+:deep(.el-button--success) {
+  background-color: #67C23A;
+  border-color: #67C23A;
+}
+
+:deep(.el-button--danger) {
+  background-color: #F56C6C;
+  border-color: #F56C6C;
+}
+
+:deep(.el-button--warning) {
+  background-color: #E6A23C;
+  border-color: #E6A23C;
+}
+
+:deep(.el-button:hover) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:deep(.el-empty__description) {
+  color: #a0aec0;
+}
+
+:deep(.el-dialog) {
+  background-color: rgba(25, 32, 56, 0.95);
+  border-radius: 12px;
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  box-shadow: 0 0 25px rgba(76, 201, 240, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+:deep(.el-dialog__title) {
+  color: #4cc9f0;
+}
+
+:deep(.el-dialog__header) {
+  border-bottom: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+:deep(.el-dialog__footer) {
+  border-top: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+/* 动画效果 */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 201, 240, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 201, 240, 0);
+  }
+}
+
+.export-btn {
+  animation: pulse 2s infinite;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .editor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .editor-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .ppt-editor {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .ppt-thumbnails {
+    height: 200px;
+    padding: 10px;
+  }
+  
+  .current-slide {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  
+  .slide-image {
+    height: auto;
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .preview-btn {
+    width: 100%;
+  }
+  
+  .export-btn {
+    width: 100%;
+  }
+  
+  .position-controls {
+    flex-direction: column;
+  }
+  
+  .position-input {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .coordinate-input {
+    width: 100%;
+  }
+  
+  :deep(.el-table) {
+    font-size: 12px;
+  }
+  
+  :deep(.el-button) {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+/* 平板适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ppt-editor {
+    grid-template-columns: 180px 1fr;
+  }
+  
+  .settings-panel {
+    grid-column: span 2;
+  }
+  
+  .current-slide {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+  
+  .slide-image {
+    height: auto;
+  }
 }
 </style>
